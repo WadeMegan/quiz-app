@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Halloween Quiz</title>
+    <meta name="description" type="A quiz app testing your Halloween knowledge">
+    <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+<body>
+    <header class = "count-container">
+        <ul>
+            <li class="question-number">Question: <span class="question-count">0</span>/10</li>
+            <li class="count-image"><img class="cat" src="" alt="black cat"></li>
+            <li class="score-number">Score: <span class="score-count">0</span></li>
+        </ul>
+    </header>
+    <main class="quiz-area">
+        <section class="opening-page">
+            <h1>The Halloween Quiz</h1>
+            <button class="start-button">Begin if you dare...</button>
+        </section>
+        <section class="question-area">
+            <form> 
+                <legend class="question"> <!--question--> </legend>
+                <input type="radio"> <!--radio option-->
+                <input type="radio"> <!--radio option-->
+                <input type="radio"> <!--radio option-->
+                <input type="radio"> <!--radio option-->
+                <button class="submit-answer">Submit</button>
+            </form>
+        </section>
+        <section class="correct-response-area">
+            <h2>Correct!</h2>
+            <img> <!--image-->
+            <p><!--additional information--></p>
+            <button class="next">Next</button>
+        </section>
+        <section class="incorrect-response-area">
+            <h2>Incorrect!</h2>
+            <img> <!--image-->
+            <p><!--additional information--></p>
+            <button class="next">Next</button>
+        </section>
+        <section class="final-area">
+            <p>Your final score is: <!--score count from JS--></p>
+            <button class="try-again">Try Again</button>
+        </section>
+    </main>
+    <footer class="bottom-image">
+        <img class="bottom-img" src="" alt="spooky graveyard">
+    </footer>
+</body>
+</html>

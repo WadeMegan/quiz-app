@@ -14,7 +14,7 @@ html, body{
     align-items:center;
 }
 
-.count-container{
+.countContainer{
     width:90%;
     padding-bottom:5px;
     padding-top:5px;
@@ -34,13 +34,13 @@ header > ul{
     height:100%;
 }
 
-.quiz-area{
+.quizArea{
     height:90%;
     width:90%;
     border:1px solid black;
 }
 
-.quiz-area > section {
+section {
     height:100%;
     width:100%;
     display:flex;
@@ -49,34 +49,52 @@ header > ul{
     align-items: center;
 }
 
-section.question-area, section.correct-response-area, section.incorrect-response-area, section.final-area{
+.questionArea > form {
+    display: flex;
+    flex-direction:column;
+    justify-content:space-around;
+}
+
+
+/*uses class .not-displayed which is toggled on and off in JS*/
+section.notDisplayed{
     display:none;
 }
 
-.start-button{
-    border:1px solid black;
+button{
+    border:1px solid grey;
     border-radius: 4px;
     padding:10px;
+    background-color:grey;
+}
 
+button:hover{
+    background-color:orange;
+    border:orange;
 }
 
 img{
     mix-blend-mode: multiply; 
 }
 
-.bottom-img{
+.bottomImg{
     width:100%;
 }
 
+
+
+
+
+
 @media only screen and (min-width: 500px) {  
-.bottom-img{
+.bottomImg{
     display:none;
 }
-.quiz-area{
+.quizArea{
     width:75%;
     height:75%;
 }
-.count-container{
+.countContainer{
     width:75%;
 }
 body{

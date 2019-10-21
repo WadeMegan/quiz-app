@@ -1,3 +1,5 @@
+let myArray=[1,2,3,4];
+
 const STORE=[
 //question 1
 {
@@ -8,7 +10,7 @@ const STORE=[
         '1.5 billion pounds',
         '3 billion pounds'
     ],
-    answer: '1.5 billion pounds',
+    answerIndex: 3,
     additional: 'The US grows 1.5 billion pounds of pumpkins per year. Roughly 1.3 billions pounds of that is grown in preparation for Halloween!',
 },
 //question 2

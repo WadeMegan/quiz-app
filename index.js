@@ -24,6 +24,7 @@ function startButtonClicked (){
         $('.questionArea').toggleClass('notDisplayed');
         updateQuestionCount();
         generateQuestion();
+        submitAnswerButtonClicked();
     })  
 } //WORKS
 
@@ -32,7 +33,7 @@ function startButtonClicked (){
 function generateQuestion(){
     $('.questionArea').html(
         `<form class="questionAreaForm">
-            <legend> ${STORE[questionCount-1].question} </legend>
+        <legend> ${STORE[questionCount-1].question} </legend>
         </form>`
     );
     generateRadios();
@@ -54,55 +55,75 @@ function generateRadios(){
 //if correct, displays correctResponseArea and calls updateScoreCount
 //if incorrect, displays incorrectResponseArea
 function submitAnswerButtonClicked (){
-    $('.questionArea').on('submit','.submitAnswer',function(event){ //why is this restarting the quiz
+    $('.questionAreaForm').on('submit',function(event){ //why is this restarting the quiz
         event.preventDefault();
-        alert("clicked");
-        //$('.questionArea').toggleClass('notDisplayed');
-        //$('.correctResponseArea').toggleClass('notDisplayed');
-        
-        //let selectedAnswer = $('input:checked');
-        //let correctAnswer = STORE[questionCount-1].answerIndex;
-        //if (selectedAnswer === correctAnswer){
-            //correctAnswerResponse();
-        //}
-        //else{
-            //incorrectAnswerResponse();
-        //};
+        if ($('input[name="option"]:checked').val() == STORE[questionCount-1].answer){
+            correctAnswerResponse();
+        }
+        else{
+            incorrectAnswerResponse();
+        };
     })
-}
+} //NOT WORKING!! how to get value of selected radio
 
+//displayed when the correct answer is selected
 function correctAnswerResponse(){
-    $('.correctResponseArea').text(hello)
+    $('.responseArea').html(`<h2>Correct!</h2><p>${STORE[questionCount-1].additional}</p><button class="next">Next</button>`);
     $('.questionArea').toggleClass('notDisplayed');
-    $('.correctResponseArea').toggleClass('notDisplayed');
-}
+    $('.responseArea').toggleClass('notDisplayed');
+    updateScoreCount();
+    nextButtonClicked();
+} //not complete
 
+//displayed when the incorrect answer is selected
 function incorrectAnswerResponse(){
-    $('.correctResponseArea').text(hello)
+    $('.responseArea').html(`<h2>Boo!</h2><p>${STORE[questionCount-1].additional}</p><button class="next">Next</button>`);
     $('.questionArea').toggleClass('notDisplayed');
-    $('.correctResponseArea').toggleClass('notDisplayed');
-}
+    $('.responseArea').toggleClass('notDisplayed');
+    nextButtonClicked();
+} //not complete
 
 //when next button clicked, updateQuestionCount, call generateQuestion 
 function nextButtonClicked (){
-
+    $('.next').on('click',function(event){
+        event.preventDefault();
+        if (questionCount<10){
+            updateQuestionCount();
+            $('.responseArea').toggleClass('notDisplayed');
+            $('.questionArea').toggleClass('notDisplayed');
+            generateQuestion();
+        }
+        else {
+            $('.responseArea').toggleClass('notDisplayed');
+            $('.finalArea').toggleClass('notDisplayed');
+            showUserFinalScore();
+        };
+        submitAnswerButtonClicked();
+    })
 }
 
-//if questionCount is at 10, generate a seeScore button instead of a nextB button
-function generateSeeScoreButton (){
-
-}
-
-//when seeScoreButton is clicked, display finalArea and show scoreCount
-//generate tryAgain button
+//display finalArea message depending on score, creating restart button
 function showUserFinalScore (){
-
+    if (scoreCount > 5){
+        $('.finalArea').html(`<h2>Congrats! You're the scariest ghost in the graveyard!</h2> <h3> Your score is: ${scoreCount}/10 </h3><p> If this were trick-or-treating, you'd get the king size bar.</p><button class="restartButton">Try Again</button>`)
+    }
+    else {
+        $('.finalArea').html(`<h2>Not so good... your Halloween knowledge must be cursed!</h2> <h3> Your score is: ${scoreCount}/10 </h3> <p> If this were trick-or-treating, you'd get some black licorice. Better luck next time.</p> <button class="restartButton">Try Again</button>`)
+    };
+    restartQuiz();
 }
 
 //when tryAgain button is clicked, reset questionCount and scoreCount
 //to 0 and display openingPage
 function restartQuiz(){
-
+    $('.restartButton').on('click',function(event){
+        questionCount=0;
+        $('.questionCount').text(questionCount);
+        scoreCount=0;
+        $('.scoreCount').text(scoreCount);
+        $('.finalArea').toggleClass('notDisplayed');
+        $('.openingPage').toggleClass('notDisplayed');
+    })
 }
 
 function createQuiz(){
@@ -110,9 +131,7 @@ function createQuiz(){
     generateQuestion();
     submitAnswerButtonClicked();
     nextButtonClicked();
-    generateSeeScoreButton();
     showUserFinalScore();
-    restartQuiz();
 }
 
 $(createQuiz)

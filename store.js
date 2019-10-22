@@ -94,7 +94,7 @@ const STORE=[
         '$9 billion',
         '$12 billion'
     ],
-    answer: '$5 billion',
+    answer: '$9 billion',
     additional: 'That\'s a lot of money! Halloween is the second highest grossing commercial holiday after Christmas.',
 },
 //question 9

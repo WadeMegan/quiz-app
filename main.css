@@ -12,13 +12,21 @@ html, body{
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    background-color:#669ac4;
+    font-family: 'Nunito', sans-serif;
+    text-align:center;
+}
+
+h1,h2{
+    font-family: 'Shadows Into Light', cursive;
 }
 
 .countContainer{
     width:90%;
     padding-bottom:5px;
     padding-top:5px;
-    border:1px solid black;
+    background-color:#f6b561;
+    margin-top:5%;
 }
 
 header > ul{
@@ -37,13 +45,18 @@ header > ul{
 .quizArea{
     height:90%;
     width:90%;
-    border:1px solid black;
+    border:1px solid white;
+    background:white;
+}
+
+.openingImg{
+    height:50%;
 }
 
 section {
     height:100%;
     width:100%;
-    padding:10%;
+    padding:5%;
     display:flex;
     flex-direction:column;
     justify-content:space-evenly;
@@ -51,22 +64,41 @@ section {
 }
 
 .questionArea > form {
+    width:100%;
+    height:100%;
     display: flex;
     flex-direction:column;
-    justify-content:space-around;
+    justify-content:space-evenly;
+    align-items:center;
 }
 
+.radioContainer{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
 
-/*uses class .not-displayed which is toggled on and off in JS*/
+.responseArea{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    align-items:center;
+}
+
+/*uses class .notDisplayed which is toggled on and off in JS*/
 section.notDisplayed{
     display:none;
 }
 
 button{
-    border:1px solid grey;
+    border:1px solid #f6b561;
     border-radius: 4px;
     padding:10px;
-    background-color:grey;
+    background-color:#f6b561;
+    font-family: 'Nunito', sans-serif;
+    width:200px;
 }
 
 button:hover{
@@ -82,12 +114,17 @@ img{
     width:100%;
 }
 
-
+.responseImg{
+    height:25%;
+}
 
 
 
 
 @media only screen and (min-width: 500px) {  
+.countContainer{
+    margin-top:0;
+}
 .bottomImg{
     display:none;
 }
@@ -97,9 +134,16 @@ img{
 }
 .countContainer{
     width:75%;
+    background-color:#f6b561;
+    border:1px solid #f6b561;
 }
 body{
-    background-image:url();
+    background-image:url(images/background.jpg);
 }
-
+.responseImg{
+    height:50%;
+}
+button{
+width:300px;
+}
 }

@@ -6,13 +6,13 @@ let scoreCount = 0;
 function updateQuestionCount (){
     questionCount++;
     $('.questionCount').text(questionCount);
-} //WORKS
+} 
 
 //updates the scoreCount when function is called and updates text
 function updateScoreCount (){
     scoreCount++;
     $('.scoreCount').text(scoreCount);
-} //WORKS
+} 
 
 //when startButton is clicked, toggles on notDisplayed for openingPage 
 //and toggles off notDisplayed for questionArea
@@ -26,7 +26,7 @@ function startButtonClicked (){
         generateQuestion();
         submitAnswerButtonClicked();
     })  
-} //WORKS
+} 
 
 //generates html for questionArea pulling in questions and answer options 
 //from STORE array using current scoreCount
@@ -34,11 +34,12 @@ function generateQuestion(){
     $('.questionArea').html(
         `<form class="questionAreaForm">
         <legend> ${STORE[questionCount-1].question} </legend>
+        <div class="radioContainer"></div>
         </form>`
     );
     generateRadios();
     $(`<button type="submit" class="submitAnswer">Submit</button>`).appendTo($('.questionAreaForm'));
-} //WORKS
+} 
 
 //generates radios using the answer options from STORE array
 function generateRadios(){
@@ -47,12 +48,12 @@ function generateRadios(){
             <input class="radio" type="radio" id="${optionIndex}" value="${optionValue}" name="option" required>
             <span>${optionValue}</span>
           </label>
-          `).appendTo($('.questionAreaForm'));
+          `).appendTo($('.radioContainer'));
       });
-} //WORKS
+} 
 
 //when submitAnswer button is clicked, checks if selected answer is correct
-//if correct, displays correctResponseArea and calls updateScoreCount
+//if correct, displays correctResponseArea
 //if incorrect, displays incorrectResponseArea
 function submitAnswerButtonClicked (){
     $('.questionAreaForm').on('submit',function(event){ //why is this restarting the quiz
@@ -64,26 +65,28 @@ function submitAnswerButtonClicked (){
             incorrectAnswerResponse();
         };
     })
-} //NOT WORKING!! how to get value of selected radio
+} 
 
-//displayed when the correct answer is selected
+//displayed when the correct answer is selected and updates score count
 function correctAnswerResponse(){
-    $('.responseArea').html(`<h2>Correct!</h2><p>${STORE[questionCount-1].additional}</p><button class="next">Next</button>`);
+    $('.responseArea').html(`<h2>Correct!</h2><img class="responseImg" src="images/correct.png" alt="pumpkin"><p>${STORE[questionCount-1].additional}</p><button class="next">Next</button>`);
     $('.questionArea').toggleClass('notDisplayed');
     $('.responseArea').toggleClass('notDisplayed');
     updateScoreCount();
     nextButtonClicked();
-} //not complete
+} 
 
 //displayed when the incorrect answer is selected
 function incorrectAnswerResponse(){
-    $('.responseArea').html(`<h2>Boo!</h2><p>${STORE[questionCount-1].additional}</p><button class="next">Next</button>`);
+    $('.responseArea').html(`<h2>Boo!</h2> <p> The correct answer is: ${STORE[questionCount-1].answer}</p><img class="responseImg" src="images/incorrect.png" alt="bats"><p>${STORE[questionCount-1].additional}</p><button class="next">Next</button>`);
     $('.questionArea').toggleClass('notDisplayed');
     $('.responseArea').toggleClass('notDisplayed');
     nextButtonClicked();
-} //not complete
+} 
 
 //when next button clicked, updateQuestionCount, call generateQuestion 
+//if more questions remain. if no more questions, show finalArea and 
+//calls showUserFinalScore function
 function nextButtonClicked (){
     $('.next').on('click',function(event){
         event.preventDefault();
@@ -102,13 +105,13 @@ function nextButtonClicked (){
     })
 }
 
-//display finalArea message depending on score, creating restart button
+//display finalArea message depending on score, creates restart button
 function showUserFinalScore (){
     if (scoreCount > 5){
-        $('.finalArea').html(`<h2>Congrats! You're the scariest ghost in the graveyard!</h2> <h3> Your score is: ${scoreCount}/10 </h3><p> If this were trick-or-treating, you'd get the king size bar.</p><button class="restartButton">Try Again</button>`)
+        $('.finalArea').html(`<h2>Congrats! You're the scariest ghost in the graveyard!</h2> <h3> Your score is: ${scoreCount}/10 </h3><img class="responseImg" src="images/goodEnd.png" alt="trick-or-treat candy"><p> If this were trick-or-treating, you'd get the king size bar.</p><button class="restartButton">Try Again</button>`)
     }
     else {
-        $('.finalArea').html(`<h2>Not so good... your Halloween knowledge must be cursed!</h2> <h3> Your score is: ${scoreCount}/10 </h3> <p> If this were trick-or-treating, you'd get some black licorice. Better luck next time.</p> <button class="restartButton">Try Again</button>`)
+        $('.finalArea').html(`<h2>Not so good... your Halloween knowledge must be cursed!</h2> <h3> Your score is: ${scoreCount}/10 </h3><img class="responseImg" src="images/badEnd.jpg" alt="witch"> <p> If this were trick-or-treating, you'd get some black licorice. Better luck next time.</p> <button class="restartButton">Try Again</button>`)
     };
     restartQuiz();
 }

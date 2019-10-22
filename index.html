@@ -7,29 +7,28 @@
     <title>Halloween Quiz</title>
     <meta name="description" type="A quiz app testing your Halloween knowledge">
     <link rel="stylesheet" type="text/css" href="main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito|Shadows+Into+Light&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class = "countContainer">
         <ul>
             <li class="questionNumber">Question: <span class="questionCount">0</span>/10</li>
-            <li class="countImage"><img class="cat" src="" alt="black cat"></li>
+            <li class="countImage"><img class="cat" src="images/cat.jpg" alt="black cat"></li>
             <li class="scoreNumber">Score: <span class="scoreCount">0</span></li>
         </ul>
     </header>
     <main class="quizArea">
         <section class="openingPage">
             <h1>The Halloween Quiz</h1>
+            <img class="openingImg" src="images/opening.jpg" alt="haunted house">
             <button class="startButton">Begin if you dare...</button>
         </section>
         <section class="questionArea notDisplayed"></section>
         <section class="responseArea notDisplayed"></section>
-        
-        <section class="finalArea notDisplayed">
-
-        </section>
+        <section class="finalArea notDisplayed"></section>
     </main>
     <footer class="bottomImage">
-        <img class="bottomImg" src="" alt="spooky graveyard">
+        <img class="bottomImg" src="images/bottom.png" alt="spooky graveyard">
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="index.js"></script>
